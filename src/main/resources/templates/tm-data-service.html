@@ -1,0 +1,50 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List of Tm</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>List of Tm</h1>
+    <table id="tm-table">
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Sat</th>
+            <th>Tier</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: "/findAll",
+            method: "GET",
+            dataType: "json",
+            success: function(data) {
+                displayTmData(data);
+            },
+            error: function(xhr, status, error) {
+                window.alert('fucked up.')
+            }
+        });
+    });
+
+    function displayTmData(data) {
+        var tableBody = $("#tm-table tbody");
+        $.each(data, function(index, tmData) {
+            var row = $("<tr>");
+            row.append($("<td>").text(tmData.f_name));
+            row.append($("<td>").text(tmData.sat));
+            row.append($("<td>").text(tmData.tier));
+            tableBody.append(row);
+        });
+    }
+</script>
+
+</body>
+</html>

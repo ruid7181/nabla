@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class gateController {
 
-    @GetMapping("/to_upload")
+    @GetMapping("/nabla")
     public String toGate(){
         return "file-upload";
     }
