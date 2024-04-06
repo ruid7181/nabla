@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <title>List of Tm</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -20,18 +20,16 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $.ajax({
-            url: "/findAll",
-            method: "GET",
-            dataType: "json",
-            success: function(data) {
-                displayTmData(data);
-            },
-            error: function(xhr, status, error) {
-                window.alert('fucked up.')
-            }
-        });
+    $.ajax({
+        url: "/findAll",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            displayTmData(data);
+        },
+        error: function(error) {
+            window.alert(error.toString())
+        }
     });
 
     function displayTmData(data) {
@@ -41,6 +39,7 @@
             row.append($("<td>").text(tmData.f_name));
             row.append($("<td>").text(tmData.sat));
             row.append($("<td>").text(tmData.tier));
+            row.append($("<button>Download</button>"))
             tableBody.append(row);
         });
     }

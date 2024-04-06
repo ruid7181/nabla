@@ -12,4 +12,9 @@ public class gateController {
     public String toGate(){
         return "file-upload";
     }
+
+    @GetMapping("/landsat")
+    public String toLandsat(){
+        return "tm-data-service";
+    }
 }
